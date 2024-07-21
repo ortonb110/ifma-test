@@ -6,18 +6,12 @@ html {
   font-size: 62.5%;
 }
 
-
-
-
-
 body {
-
-    background-image: url('./assets/Background.png');
+  background-image: url('./assets/Background.png');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100vh;
-  
 }
 
 .main-content {
@@ -33,8 +27,8 @@ body {
 @media screen and (max-width: 640px) {
   main-content {
     padding-inline: 2rem;
-  
-} }
+  }
+}
 
 /* Tablet Screen */
 @media screen and (min-width: 1024px) {
@@ -50,7 +44,6 @@ body {
   }
 }
 
-
 @layer components {
   .app-drawer {
     animation: app-drawer 0.3s linear;
@@ -59,7 +52,6 @@ body {
   .app-drawer-close {
     animation: app-drawer-close 2s linear;
   }
-
 
   @keyframes app-drawer {
     from {
@@ -78,6 +70,4 @@ body {
       right: -800px;
     }
   }
-
 }
-

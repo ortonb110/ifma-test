@@ -1,98 +1,137 @@
-'use client'
-import ThemeSwitch from "./ThemeSwitcher"
-import Link from "next/link"
-import logo from "@/app/assets/logo.png";
-import arrowRight from "@/app/assets/arrow-right.svg";
-import Image from "next/image";
+'use client';
+import ThemeSwitch from './ThemeSwitcher';
+import Link from 'next/link';
+import logo from '@/app/assets/logo.png';
+import arrowRight from '@/app/assets/arrow-right.svg';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoClose } from "react-icons/io5";
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { IoClose } from 'react-icons/io5';
 
 const NavigationBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const [menuOpen, setMenuOpen] = useState(false)
+  const OpenMenuHandler = () => {
+    setMenuOpen((prev) => !prev);
+  };
 
-    const OpenMenuHandler = () => {
-        setMenuOpen(prev => !prev)
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
+  }, [menuOpen]);
 
-    useEffect(()=> {
-        if(menuOpen){
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = 'auto'
-        }
-    }, [menuOpen])
-
-    return (
-        <header className="text-[1.6rem] font-bold dark:text-gray-200/80 text-black/50 py-[2rem] bg-transparent backdrop-blur-[10px] fixed top-0 w-full px-[2rem] md:px-[12rem] lg:px-[32rem]">
-            <nav>
-                <ul className="flex items-center justify-between capitalize">
-                    <li>
-                        <Link href="/">
-                            <Image src={logo} width={40} height={40} alt="Moviela Logo" />
-                        </Link>
-                    </li>
-                    <li className="w-[400px] hidden md:block">
-                        <ul className="flex item-center justify-between">
-                            <li>
-                                <Link href="/movies" className="hover:text-primary transition-colors ease-in-out duration-150">Movies</Link>
-                            </li>
-                            <li>
-                                <Link href="/tv-shows" className="hover:text-primary transition-colors ease-in-out duration-150">tv shows</Link>
-                            </li>
-                            <li>
-                                <Link href="/search" className="flex items-center gap-4 group">
-                                    <span className="group-hover:text-primary transition-colors ease-in-out duration-150">search</span>
-                                    <Image src={arrowRight} width={20} height={20} alt='' className="group-hover:translate-x-2 transition-transform ease-in-out duration-150" />
-                                </Link>
-                            </li>
-                            <li className="my-auto">
-                                <ThemeSwitch />
-                            </li>
-
-                        </ul>
-
-                    </li>
-                    <li className="block md:hidden">
-                        <button onClick={OpenMenuHandler} className="dark:bg-secondary rounded-lg p-2 hover:bg-primary/30 dark:hover:bg-primary/30 transition-colors ease-in-out duration-150 group">
-                            <RxHamburgerMenu className="dark:text-white/40 group-hover:text-white transition-colors ease-in-out duration-150 text-[2.5rem]" />
-                        </button>
-                    </li>
-                    {
-                        menuOpen && (
-                            <div className="w-full bg-black/20 backdrop-blur-[10px] absolute top-0 left-0 h-[100vh] md:hidden">
-                                <div className={`absolute h-[100vh] dark:text-white/30 text-white/80 ${menuOpen? 'app-drawer right-0' : 'app-drawer-close right-[-800px]'} top-0 bg-secondary w-[50%] p-[2rem]`}>
-                                <div className="flex justify-end mb-[3rem]">
-                                    <button onClick={OpenMenuHandler} className="dark:bg-secondary  rounded-lg p-2 hover:bg-primary/30 dark:hover:bg-primary/30 transition-colors ease-in-out duration-150 group">
-                                        <IoClose className="dark:text-white/40 group-hover:text-white transition-colors ease-in-out duration-150 text-[2.5rem]" />
-                                    </button>
-                                </div>
-                                <ul className="flex flex-col item-center space-y-4 text-[2.5rem]">
-                                    <li>
-                                        <Link href="/movies" className="hover:text-primary transition-colors ease-in-out duration-150">Movies</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/tv-shows" className="hover:text-primary transition-colors ease-in-out duration-150">tv shows</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/search" className="flex items-center gap-4 group">
-                                            <span className="group-hover:text-primary transition-colors ease-in-out duration-150">search</span>
-                                            <Image src={arrowRight} width={20} height={20} alt='' className="group-hover:translate-x-2 transition-transform ease-in-out duration-150" />
-                                        </Link>
-                                    </li>
-                                    <li className="my-auto">
-                                        <ThemeSwitch />
-                                    </li>
-                                </ul>
-                            </div>
-                            </div>
-                        )
-                    }
+  return (
+    <header className="fixed top-0 z-[10000] w-full bg-transparent px-[2rem] py-[2rem] text-[1.6rem] font-bold text-black/50 backdrop-blur-[10px] dark:text-gray-200/80 md:px-[5rem] xl:px-[15rem] 2xl:px-[25rem]">
+      <nav>
+        <ul className="flex items-center justify-between capitalize">
+          <li>
+            <Link href="/">
+              <Image src={logo} width={40} height={40} alt="Moviela Logo" />
+            </Link>
+          </li>
+          <li className="hidden w-[400px] md:block">
+            <ul className="item-center flex justify-between">
+              <li>
+                <Link
+                  href="/movies"
+                  className="transition-colors duration-150 ease-in-out hover:text-primary"
+                >
+                  Movies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/tv-shows"
+                  className="transition-colors duration-150 ease-in-out hover:text-primary"
+                >
+                  tv shows
+                </Link>
+              </li>
+              <li>
+                <Link href="/search" className="group flex items-center gap-4">
+                  <span className="transition-colors duration-150 ease-in-out group-hover:text-primary">
+                    search
+                  </span>
+                  <Image
+                    src={arrowRight}
+                    width={20}
+                    height={20}
+                    alt=""
+                    className="transition-transform duration-150 ease-in-out group-hover:translate-x-2"
+                  />
+                </Link>
+              </li>
+              <li className="my-auto">
+                <ThemeSwitch />
+              </li>
+            </ul>
+          </li>
+          <li className="block md:hidden">
+            <button
+              onClick={OpenMenuHandler}
+              className="group rounded-lg p-2 transition-colors duration-150 ease-in-out hover:bg-primary/30 dark:bg-secondary dark:hover:bg-primary/30"
+            >
+              <RxHamburgerMenu className="text-[2.5rem] transition-colors duration-150 ease-in-out group-hover:text-white dark:text-white/40" />
+            </button>
+          </li>
+          {menuOpen && (
+            <div className="absolute left-0 top-0 h-[100vh] w-full bg-black/20 backdrop-blur-[10px] md:hidden">
+              <div
+                className={`absolute h-[100vh] text-white/80 dark:text-white/30 ${menuOpen ? 'app-drawer right-0' : 'app-drawer-close right-[-800px]'} top-0 w-[50%] bg-secondary p-[2rem]`}
+              >
+                <div className="mb-[3rem] flex justify-end">
+                  <button
+                    onClick={OpenMenuHandler}
+                    className="group rounded-lg p-2 transition-colors duration-150 ease-in-out hover:bg-primary/30 dark:bg-secondary dark:hover:bg-primary/30"
+                  >
+                    <IoClose className="text-[2.5rem] transition-colors duration-150 ease-in-out group-hover:text-white dark:text-white/40" />
+                  </button>
+                </div>
+                <ul className="item-center flex flex-col space-y-4 text-[2.5rem]">
+                  <li>
+                    <Link
+                      href="/movies"
+                      className="transition-colors duration-150 ease-in-out hover:text-primary"
+                    >
+                      Movies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/tv-shows"
+                      className="transition-colors duration-150 ease-in-out hover:text-primary"
+                    >
+                      tv shows
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/search" className="group flex items-center gap-4">
+                      <span className="transition-colors duration-150 ease-in-out group-hover:text-primary">
+                        search
+                      </span>
+                      <Image
+                        src={arrowRight}
+                        width={20}
+                        height={20}
+                        alt=""
+                        className="transition-transform duration-150 ease-in-out group-hover:translate-x-2"
+                      />
+                    </Link>
+                  </li>
+                  <li className="my-auto">
+                    <ThemeSwitch />
+                  </li>
                 </ul>
-            </nav>
-        </header>
-    )
-}
+              </div>
+            </div>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
-export default NavigationBar
+export default NavigationBar;

@@ -1,6 +1,7 @@
-import HomePage from "@/app/Components/HomePage";
+import HomePage from '@/app/Components/HomePage';
 
-export default function Home() {
+
+export default async function Home() {
   return (
     <main className="h-[100vh]">
       <HomePage />

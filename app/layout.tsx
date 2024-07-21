@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/app/Providers";
+import NavigationBar from "@/app/Components/NavigationBar";
+
 
 const poppins = Poppins({ subsets: ["latin-ext"], weight: ['400', '500', '600', '700'] });
 
@@ -18,11 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={poppins.className}>
+      <body className={poppins.className} >
         <Provider>
-          <div className="bg-transparent backdrop-blur-[20px] h-[100vh]">
-            {children}
-          </div>
+          <main className="z-10 h-full">
+            <NavigationBar/>
+            <section className="main-content mt-[16rem]">
+              {children}
+            </section>
+          </main>
         </Provider>
       </body>
     </html>

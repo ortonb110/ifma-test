@@ -2,35 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  font-size: 62.5%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
+
 
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
 
     background-image: url('./assets/Background.png');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  
 }
 
+.main-content {
+  padding-inline: 12rem;
+}
+
+@media screen and (max-width: 768px) {
+  main-content {
+    padding-inline: 3rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  main-content {
+    padding-inline: 2rem;
+  
+} }
+
+/* Tablet Screen */
+@media screen and (min-width: 1024px) {
+  main-content {
+    padding-inline: 5rem;
+  }
+}
+
+/* Medium sized but a little larger than tablet */
+@media screen and (min-width: 1280px) {
+  main-content {
+    padding-inline: 12rem;
+  }
+}
 
 

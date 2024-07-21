@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoClose } from 'react-icons/io5';
 
+
+
 const NavigationBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 

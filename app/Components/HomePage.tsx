@@ -1,19 +1,22 @@
-import Hero from './Hero';
 import Content from './Content';
-import { Suspense } from 'react';
+import axios from 'axios';
 
-const HomePage = () => {
+const fetchMovies = async () => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api?action=get&query=movies`,
+    );
+    return data;
+  } catch (error) {
+    return 'There was an error fetching the data';
+  }
+};
+
+const HomePage = async () => {
+  const data = await fetchMovies();
   return (
-    <section className="mt-[16rem]">
-      <Hero
-        title="MaileHereko"
-        titleStyles="text-[4rem] lg:text-[6rem] font-bold"
-        subtitle="Millions of movies, TV shows and more. Explore now."
-        subtitleStyles="text-[1.5rem] text-black/70 dark:text-gray-200/40 font-light"
-      />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Content />
-      </Suspense>
+    <section>
+      <Content data={data} />
     </section>
   );
 };

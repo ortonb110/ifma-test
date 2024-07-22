@@ -11,6 +11,7 @@ export default async function Home() {
         titleStyles="text-[4rem] lg:text-[6rem] font-bold"
         subtitle="Millions of movies, TV shows and more. Explore now."
         subtitleStyles="text-[1.5rem] text-black/70 dark:text-gray-200/40 font-light"
+        searchText="Search Movies and TV Shows"
       />
       <Suspense fallback={<LoadingCard />}>
         <HomePage />

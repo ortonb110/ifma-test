@@ -9,14 +9,14 @@ import { resolveMovieData } from '../GlobalStore/Features/CreateSlice';
 import { useEffect } from 'react';
 
 const Content = ({ data }: { data: any }) => {
-  const movieData = useSelector((state: RootState) => state.movies.movieData);
+  const movieData = useSelector((state: RootState) => state.movies.movieDataHome);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resolveMovieData(data));
   }, [data]);
   return (
-    <section className="pb-[2rem]">
-      <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] pt-[8rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
+    <section className="pb-[2rem] pt-[8rem]">
+      <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
         {movieData.length > 0 &&
           movieData.map(
             (

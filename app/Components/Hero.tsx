@@ -5,11 +5,13 @@ const Hero = ({
   titleStyles,
   subtitle,
   subtitleStyles,
+  searchText,
 }: {
   title: string;
   titleStyles: string;
   subtitle: string;
   subtitleStyles: string;
+  searchText: string | 'undefined';
 }) => {
   return (
     <section className="space-y-[2rem]">
@@ -17,7 +19,7 @@ const Hero = ({
         <h1 className={titleStyles}>{title}</h1>
         <h2 className={subtitleStyles}>{subtitle}</h2>
       </div>
-      <SearchComponent />
+      <SearchComponent text={searchText}/>
     </section>
   );
 };

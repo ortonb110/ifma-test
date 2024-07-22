@@ -5,13 +5,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface AppContextState {
   page: number;
   search: string;
-  movieData: any;
+  movieDataHome: any;
   details: any;
+  movieData: any;
 }
 
 const initialState: AppContextState = {
   page: 1,
   search: '',
+  movieDataHome: [],
   movieData: [],
   details: {},
 };
@@ -35,14 +37,23 @@ const AppContext = createSlice({
       state.search = action.payload.trim();
     },
     resolveMovieData: (state, action) => {
-      state.movieData = action.payload;
+      state.movieDataHome = action.payload;
     },
     resolveDetails: (state, action) => {
       state.details = action.payload;
     },
+    resolveMovies: (state, action) => {
+      state.movieData = action.payload;
+    },
   },
 });
 
-export const { increment, decrement, getSearchText, resolveMovieData, resolveDetails } =
-  AppContext.actions;
+export const {
+  increment,
+  decrement,
+  getSearchText,
+  resolveMovieData,
+  resolveDetails,
+  resolveMovies,
+} = AppContext.actions;
 export default AppContext.reducer;

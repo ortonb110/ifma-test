@@ -72,6 +72,12 @@ const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
                 {data?.release_date}
               </span>
             </p>
+            <p className="flex flex-col space-y-[1rem] capitalize">
+              <span className="text-[1.3rem] text-gray-500/80">status</span>
+              <span className="text-[1.5rem] font-semibold text-black dark:text-white">
+                {data?.status}
+              </span>
+            </p>
             <p className="flex flex-col space-y-[1rem]">
               <span className="text-[1.3rem] capitalize text-gray-500/80">run time</span>
               <span className="text-[1.5rem] font-semibold text-black dark:text-white">
@@ -82,6 +88,16 @@ const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
               <span className="text-[1.3rem] text-gray-500/80">genres</span>
               <span className="text-[1.5rem] font-semibold text-black dark:text-white">
                 {data?.genres.map((genre: { name: string }) => genre.name).join(', ')}
+              </span>
+            </p>
+            <p className="flex flex-col space-y-[1rem] capitalize">
+              <span className="text-[1.3rem] text-gray-500/80">
+                Production {data?.production_companies.length > 1 ? 'companies' : 'company'}
+              </span>
+              <span className="text-[1.5rem] font-semibold text-black dark:text-white">
+                {data?.production_companies
+                  .map((company: { name: string }) => company.name)
+                  .join(', ')}
               </span>
             </p>
           </div>

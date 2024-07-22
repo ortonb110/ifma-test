@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
         <Provider>
-          <main className="z-10 h-full">
+          <main className="z-10">
             <NavigationBar />
             <Providers>
               <section className="px-[2rem] md:px-[5rem] xl:px-[15rem] 2xl:px-[25rem]">

@@ -8,15 +8,17 @@ const MovieCard = ({
   title,
   rating,
   id,
+  path,
 }: {
   imagePath: string;
   title: string;
   rating: number;
   id: string;
+  path: string;
 }) => {
   return (
     <Link
-      href={`/movies/${id}`}
+      href={`${path}${id}`}
       className="group relative min-h-[480px] rounded-xl bg-black/15 p-[8px] text-primary backdrop-blur-[5px] dark:text-white lg:w-full"
     >
       <div className="overflow-hidden rounded-xl">

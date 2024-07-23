@@ -22,6 +22,11 @@ const fetchMoviesDetails = async ({ id }: { id: string }) => {
 
 const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
   const data = await fetchMoviesDetails({ id: id.toString() });
+  // Format the price above to USD using the locale, style, and currency.
+  let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
 
   if (data && Object.keys(data).length > 0) {
     return (
@@ -32,7 +37,7 @@ const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
             alt={data.title}
             width={500}
             height={750}
-            className="h-[300px] w-full rounded-[50px] object-center md:h-[350px] lg:h-[480px]"
+            className="h-[300px] w-full rounded-[50px] object-cover md:h-[350px] lg:h-[480px]"
           />
           <div className="absolute bottom-[0px] z-20 min-h-[134px] w-full space-y-[5px] rounded-[30px] bg-black/20 p-[4rem] backdrop-blur-[20px] md:left-[10%] md:w-[60%]">
             <p className="flex gap-3 text-[1.1rem] font-bold text-primary/50 dark:text-gray-500/60">
@@ -50,7 +55,7 @@ const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
               alt={data.title}
               width={500}
               height={750}
-              className="rounded-[24px] object-center"
+              className="h-full rounded-[24px] object-center"
             />
           </div>
           <div className="w-full space-y-[2.4rem]">
@@ -84,6 +89,26 @@ const MovieDetails = async ({ params: { id } }: { params: { id: string } }) => {
                 {data?.runtime} min
               </span>
             </p>
+            {data.budget ? (
+              <p className="flex flex-col space-y-[1rem]">
+                <span className="text-[1.3rem] capitalize text-gray-500/80">budget</span>
+                <span className="text-[1.5rem] font-semibold text-black dark:text-white">
+                  {USDollar.format(data?.budget)}
+                </span>
+              </p>
+            ) : (
+              ''
+            )}
+            {data.revenue ? (
+              <p className="flex flex-col space-y-[1rem]">
+                <span className="text-[1.3rem] capitalize text-gray-500/80">revenue</span>
+                <span className="text-[1.5rem] font-semibold text-black dark:text-white">
+                  {USDollar.format(data.revenue)}
+                </span>
+              </p>
+            ) : (
+              ''
+            )}
             <p className="flex flex-col space-y-[1rem] capitalize">
               <span className="text-[1.3rem] text-gray-500/80">genres</span>
               <span className="text-[1.5rem] font-semibold text-black dark:text-white">

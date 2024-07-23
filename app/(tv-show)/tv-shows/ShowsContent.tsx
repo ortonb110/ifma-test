@@ -1,31 +1,30 @@
 'use client';
-import { Key } from 'react';
-import MovieCard from '@/app/Components/MovieCard';
-import DataNavigator from '@/app/Components/DataNavigator';
-import { RootState } from '../GlobalStore/Store';
-import { useSelector, useDispatch } from 'react-redux';
-import { resolveMovies } from '../GlobalStore/Features/CreateSlice';
-import { getMovies } from '@/app/actions/actions';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, Key } from 'react';
 import LoadingCard from '@/app/Components/LoadingCard';
+import { useSelector, useDispatch } from 'react-redux';
+import { resolveMoviesTV } from '@/app/GlobalStore/Features/CreateSlice';
+import { getTVShows } from '@/app/actions/actions';
+import MovieCard from '@/app/Components/MovieCard';
+import { RootState } from '@/app/GlobalStore/Store';
+import DataNavigator from '@/app/Components/DataNavigator';
 
 interface Data {
   Data: string;
 }
 
-const MoviesContent = () => {
+const ShowsContent = () => {
   const [contentData, setContentData] = useState<Data>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const movieData = useSelector((state: RootState) => state.movies.movieData);
-  const page = useSelector((state: RootState) => state.movies.page);
+  const tvData = useSelector((state: RootState) => state.movies.tvData);
+  const page = useSelector((state: RootState) => state.movies.tvPage);
   const dispatch = useDispatch();
 
   const getData = useCallback(async ({ page }: { page: number }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsLoading(true);
-    const data = await getMovies({ page: page });
+    const data = await getTVShows({ page: page });
     setIsLoading(false);
     setContentData(data);
   }, []);
@@ -35,7 +34,7 @@ const MoviesContent = () => {
   }, [page]);
 
   useEffect(() => {
-    dispatch(resolveMovies(contentData));
+    dispatch(resolveMoviesTV(contentData));
   }, [contentData]);
 
   return (
@@ -45,19 +44,19 @@ const MoviesContent = () => {
       ) : (
         <>
           <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
-            {movieData &&
-              movieData.length > 0 &&
-              movieData.map(
+            {tvData &&
+              tvData.length > 0 &&
+              tvData.map(
                 (
-                  movie: { poster_path: string; title: string; vote_average: number; id: string },
+                  movie: { poster_path: string; name: string; vote_average: number; id: string },
                   index: Key | null | undefined,
                 ) => {
                   return (
                     <MovieCard
-                      path="/movies/"
+                      path="/tv-shows/"
                       key={index}
                       imagePath={movie.poster_path}
-                      title={movie.title}
+                      title={movie.name}
                       rating={movie.vote_average}
                       id={movie.id}
                     />
@@ -66,11 +65,11 @@ const MoviesContent = () => {
               )}
           </div>
           {/* <DataNavigator pageNavigationHandler={pageNavigationHandler} /> */}
-          {movieData && movieData.length > 0 && <DataNavigator path="movies" />}
+          {tvData && tvData.length > 0 && <DataNavigator path="tv-shows" />}
         </>
       )}
     </section>
   );
 };
 
-export default MoviesContent;
+export default ShowsContent;

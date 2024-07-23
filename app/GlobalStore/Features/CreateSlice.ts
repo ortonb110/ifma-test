@@ -8,6 +8,11 @@ export interface AppContextState {
   movieDataHome: any;
   details: any;
   movieData: any;
+  tvPage: number;
+  tvData: any;
+  tvDetails: any;
+  tvSearch: string;
+  tvDataHome: any;
 }
 
 const initialState: AppContextState = {
@@ -16,6 +21,11 @@ const initialState: AppContextState = {
   movieDataHome: [],
   movieData: [],
   details: {},
+  tvPage: 1,
+  tvData: [],
+  tvDetails: {},
+  tvSearch: '',
+  tvDataHome: [],
 };
 
 //This is the AppContext methods that will be used to update the state
@@ -33,6 +43,16 @@ const AppContext = createSlice({
         state.page = 1;
       }
     },
+    incrementTV: (state) => {
+      state.tvPage += 1;
+    },
+    decrementTV: (state) => {
+      if (state.tvPage > 1) {
+        state.tvPage -= 1;
+      } else {
+        state.tvPage = 1;
+      }
+    },
     getSearchText: (state, action) => {
       state.search = action.payload.trim();
     },
@@ -45,6 +65,18 @@ const AppContext = createSlice({
     resolveMovies: (state, action) => {
       state.movieData = action.payload;
     },
+    getSearchTextTV: (state, action) => {
+      state.tvSearch = action.payload.trim();
+    },
+    resolveMovieDataTV: (state, action) => {
+      state.tvDataHome = action.payload;
+    },
+    resolveDetailsTV: (state, action) => {
+      state.tvDetails = action.payload;
+    },
+    resolveMoviesTV: (state, action) => {
+      state.tvData = action.payload;
+    },
   },
 });
 
@@ -55,5 +87,11 @@ export const {
   resolveMovieData,
   resolveDetails,
   resolveMovies,
+  incrementTV,
+  decrementTV,
+  getSearchTextTV,
+  resolveMovieDataTV,
+  resolveDetailsTV,
+  resolveMoviesTV,
 } = AppContext.actions;
 export default AppContext.reducer;

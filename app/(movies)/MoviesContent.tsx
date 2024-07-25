@@ -4,7 +4,7 @@ import MovieCard from '@/app/Components/MovieCard';
 import DataNavigator from '@/app/Components/DataNavigator';
 import { RootState } from '../GlobalStore/Store';
 import { useSelector, useDispatch } from 'react-redux';
-import { resolveMovies } from '../GlobalStore/Features/CreateSlice';
+import { resolveMovies, setMoviesLoading } from '../GlobalStore/Features/CreateSlice';
 import { getMovies } from '@/app/actions/actions';
 import { useCallback, useEffect, useState } from 'react';
 import LoadingCard from '@/app/Components/LoadingCard';
@@ -15,18 +15,16 @@ interface Data {
 
 const MoviesContent = () => {
   const [contentData, setContentData] = useState<Data>();
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const movieData = useSelector((state: RootState) => state.movies.movieData);
   const page = useSelector((state: RootState) => state.movies.page);
+  const loading = useSelector((state: RootState) => state.movies.moviesLoading);
   const dispatch = useDispatch();
 
   const getData = useCallback(async ({ page }: { page: number }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setIsLoading(true);
-    const data = await getMovies({ page: page });
-    setIsLoading(false);
+    dispatch(setMoviesLoading(true));
+    const data = await getMovies({ page: page, search: 'undefined' });
+    dispatch(setMoviesLoading(false));
     setContentData(data);
   }, []);
 
@@ -40,7 +38,7 @@ const MoviesContent = () => {
 
   return (
     <section className="pb-[2rem] pt-[8rem]">
-      {isLoading ? (
+      {loading ? (
         <LoadingCard />
       ) : (
         <>
@@ -65,7 +63,6 @@ const MoviesContent = () => {
                 },
               )}
           </div>
-          {/* <DataNavigator pageNavigationHandler={pageNavigationHandler} /> */}
           {movieData && movieData.length > 0 && <DataNavigator path="movies" />}
         </>
       )}

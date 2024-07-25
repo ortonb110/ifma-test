@@ -25,6 +25,7 @@ const Content = ({ data }: { data: any }) => {
             ) => {
               return (
                 <MovieCard
+                  path="/movies/"
                   key={index}
                   imagePath={movie.poster_path}
                   title={movie.title}

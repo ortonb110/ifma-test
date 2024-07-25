@@ -22,7 +22,6 @@ const fetchMoviesDetails = async ({ id }: { id: string }) => {
 
 const TvShows = async ({ params: { id } }: { params: { id: string } }) => {
   const data = await fetchMoviesDetails({ id: id.toString() });
-  console.log(data);
 
   // Format the price above to USD using the locale, style, and currency.
   let USDollar = new Intl.NumberFormat('en-US', {

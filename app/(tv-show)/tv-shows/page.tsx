@@ -12,6 +12,7 @@ const TVHomePage = () => {
         subtitle="TV Shows"
         subtitleStyles="text-[6rem] lg:text-[6rem] font-bold text-black/70 dark:text-white"
         searchText="Search tv shows"
+        path="tv-shows"
       />
       <Suspense fallback={<LoadingCard />}>
         <ShowTvs />

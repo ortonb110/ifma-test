@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { resolve } from 'path';
 
 //This is the initial state of the AppContext State
 
@@ -13,6 +14,10 @@ export interface AppContextState {
   tvDetails: any;
   tvSearch: string;
   tvDataHome: any;
+  moviesLoading: boolean;
+  tvLoading: boolean;
+  searchData: any;
+  searchPageLoading: boolean;
 }
 
 const initialState: AppContextState = {
@@ -26,6 +31,10 @@ const initialState: AppContextState = {
   tvDetails: {},
   tvSearch: '',
   tvDataHome: [],
+  moviesLoading: false,
+  tvLoading: false,
+  searchData: [],
+  searchPageLoading: false,
 };
 
 //This is the AppContext methods that will be used to update the state
@@ -77,6 +86,18 @@ const AppContext = createSlice({
     resolveMoviesTV: (state, action) => {
       state.tvData = action.payload;
     },
+    setMoviesLoading: (state, action) => {
+      state.moviesLoading = action.payload;
+    },
+    setTvLoading: (state, action) => {
+      state.tvLoading = action.payload;
+    },
+    setSearchPageLoading: (state, action) => {
+      state.searchPageLoading = action.payload;
+    },
+    resolveSearchData: (state, action) => {
+      state.searchData = action.payload;
+    },
   },
 });
 
@@ -93,5 +114,7 @@ export const {
   resolveMovieDataTV,
   resolveDetailsTV,
   resolveMoviesTV,
+  setTvLoading,
+  setMoviesLoading,
 } = AppContext.actions;
 export default AppContext.reducer;

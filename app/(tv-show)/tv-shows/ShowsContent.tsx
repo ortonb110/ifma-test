@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState, Key } from 'react';
 import LoadingCard from '@/app/Components/LoadingCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { resolveMoviesTV } from '@/app/GlobalStore/Features/CreateSlice';
+import { resolveMoviesTV, setTvLoading } from '@/app/GlobalStore/Features/CreateSlice';
 import { getTVShows } from '@/app/actions/actions';
 import MovieCard from '@/app/Components/MovieCard';
 import { RootState } from '@/app/GlobalStore/Store';
@@ -14,18 +14,16 @@ interface Data {
 
 const ShowsContent = () => {
   const [contentData, setContentData] = useState<Data>();
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const tvData = useSelector((state: RootState) => state.movies.tvData);
   const page = useSelector((state: RootState) => state.movies.tvPage);
+  const loading = useSelector((state: RootState) => state.movies.tvLoading);
   const dispatch = useDispatch();
 
   const getData = useCallback(async ({ page }: { page: number }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setIsLoading(true);
-    const data = await getTVShows({ page: page });
-    setIsLoading(false);
+    dispatch(setTvLoading(true));
+    const data = await getTVShows({ page: page, search: undefined });
+    dispatch(setTvLoading(false));
     setContentData(data);
   }, []);
 
@@ -39,7 +37,7 @@ const ShowsContent = () => {
 
   return (
     <section className="pb-[2rem] pt-[8rem]">
-      {isLoading ? (
+      {loading ? (
         <LoadingCard />
       ) : (
         <>
@@ -64,7 +62,6 @@ const ShowsContent = () => {
                 },
               )}
           </div>
-          {/* <DataNavigator pageNavigationHandler={pageNavigationHandler} /> */}
           {tvData && tvData.length > 0 && <DataNavigator path="tv-shows" />}
         </>
       )}

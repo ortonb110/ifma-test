@@ -41,9 +41,10 @@ const ShowsContent = () => {
         <LoadingCard />
       ) : (
         <>
-          <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
-            {tvData &&
-              tvData.length > 0 &&
+          <div
+            className={`${tvData && tvData.length > 0 ? 'grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]' : 'flex h-[60vh] w-full items-center justify-center'}`}
+          >
+            {tvData && tvData.length > 0 ? (
               tvData.map(
                 (
                   movie: { poster_path: string; name: string; vote_average: number; id: string },
@@ -60,7 +61,12 @@ const ShowsContent = () => {
                     />
                   );
                 },
-              )}
+              )
+            ) : (
+              <div className="text-[1.5rem] font-light text-black/70 dark:text-gray-200/40">
+                No TV Shows Found
+              </div>
+            )}
           </div>
           {tvData && tvData.length > 0 && <DataNavigator path="tv-shows" />}
         </>

@@ -30,7 +30,7 @@ export const getSearchMovies = async ({ search }: { search: string | undefined }
     );
     return await JSON.parse(JSON.stringify(data.results));
   } catch (error) {
-    return 'There was an error fetching the data';
+    return `No result found for ${search}`;
   }
 };
 
@@ -56,7 +56,6 @@ export const getTVShows = async ({
   }
 };
 
-
 export const getTvShowsSearch = async ({ search }: { search: string | undefined }) => {
   try {
     const newSearch = search?.split(' ').join('+');
@@ -70,6 +69,6 @@ export const getTvShowsSearch = async ({ search }: { search: string | undefined 
     );
     return await JSON.parse(JSON.stringify(data.results));
   } catch (error) {
-    return 'There was an error fetching the data';
+    return `No result found for ${search}`;
   }
 };

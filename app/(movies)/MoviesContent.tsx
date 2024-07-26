@@ -23,7 +23,7 @@ const MoviesContent = () => {
   const getData = useCallback(async ({ page }: { page: number }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch(setMoviesLoading(true));
-    const data = await getMovies({ page: page, search: 'undefined' });
+    const data = await getMovies({ page: page });
     dispatch(setMoviesLoading(false));
     setContentData(data);
   }, []);
@@ -42,9 +42,10 @@ const MoviesContent = () => {
         <LoadingCard />
       ) : (
         <>
-          <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
-            {movieData &&
-              movieData.length > 0 &&
+          <div
+            className={`${movieData && movieData.length > 0 ? 'grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]' : 'flex h-[60vh] w-full items-center justify-center'}`}
+          >
+            {movieData && movieData.length > 0 ? (
               movieData.map(
                 (
                   movie: { poster_path: string; title: string; vote_average: number; id: string },
@@ -61,7 +62,12 @@ const MoviesContent = () => {
                     />
                   );
                 },
-              )}
+              )
+            ) : (
+              <div className="text-[1.5rem] font-light text-black/70 dark:text-gray-200/40">
+                No Movies Found
+              </div>
+            )}
           </div>
           {movieData && movieData.length > 0 && <DataNavigator path="movies" />}
         </>

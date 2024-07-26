@@ -16,6 +16,7 @@ interface Data {
 const MoviesContent = () => {
   const [contentData, setContentData] = useState<Data>();
   const movieData = useSelector((state: RootState) => state.movies.movieData);
+  const search = useSelector((state: RootState) => state.movies.search);
   const page = useSelector((state: RootState) => state.movies.page);
   const loading = useSelector((state: RootState) => state.movies.moviesLoading);
   const dispatch = useDispatch();
@@ -29,11 +30,20 @@ const MoviesContent = () => {
   }, []);
 
   useEffect(() => {
-    getData({ page: page });
+    if (search.length > 0 && movieData.length > 0) {
+      return;
+    } else {
+      getData({ page: page });
+    }
   }, [page]);
 
   useEffect(() => {
-    dispatch(resolveMovies(contentData));
+    if (search.length > 0 && movieData.length > 0) {
+      return;
+    } else {
+      console.log('search', search);
+      dispatch(resolveMovies(contentData));
+    }
   }, [contentData]);
 
   return (
@@ -69,7 +79,7 @@ const MoviesContent = () => {
               </div>
             )}
           </div>
-          {movieData && movieData.length > 0 && <DataNavigator path="movies" />}
+          {search.length > 0 ? '' : <DataNavigator path="movies" />}
         </>
       )}
     </section>

@@ -53,9 +53,9 @@ const NavigationBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/search" className="group flex items-center gap-4">
+                <Link href="/now-playing" className="group flex items-center gap-4">
                   <span className="transition-colors duration-150 ease-in-out group-hover:text-primary">
-                    search
+                    Now Playing
                   </span>
                   <Image
                     src={arrowRight}

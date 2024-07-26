@@ -24,7 +24,7 @@ const SearchComponent = ({ text, path }: { text: string; path: string | undefine
   const [searchText, setSearchText] = useState('');
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    getSearchText(e.target.value);
+    dispatch(getSearchText(e.target.value));
     setSearchText(e.target.value);
   };
 
@@ -54,7 +54,8 @@ const SearchComponent = ({ text, path }: { text: string; path: string | undefine
     e.preventDefault();
     if (searchText.trim() === '' || searchText.length < 1) return;
     if (path === 'home') {
-      router.push('/search');
+      getMoviesData({ text: searchText });
+      router.push('/movies');
     } else if (path === 'tv-shows') {
       getTVShowsData({ text: searchText });
     } else {

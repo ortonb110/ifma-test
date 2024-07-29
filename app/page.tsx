@@ -13,6 +13,7 @@ export default async function Home() {
         subtitleStyles="text-[1.5rem] text-black/70 dark:text-gray-200/40 font-light"
         searchText="Search Movies and TV Shows"
         path="home"
+        search={true}
       />
       <Suspense fallback={<LoadingCard />}>
         <HomePage />

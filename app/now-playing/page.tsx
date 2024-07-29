@@ -1,8 +1,6 @@
 import Hero from '@/app/Components/Hero';
 import Container from '@/app/now-playing/Container';
 
-
-
 const page = () => {
   return (
     <main className="mt-[16rem]">

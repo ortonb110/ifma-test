@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# MaileHeroko MoviesHub
 
-First, run the development server:
+This is a simple nextjs web application to fetch details on upcoming and released movies or TV shows that you may be interested in knowing all about. 
+
+
+
+
+## How to setup or run 
+
+Install project with npm
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  clone this repository to your prefered directory 
+  cd ifma-test  
+  run npm install from the root directory from your favorite terminal
+  create .env.local file and paste these:
+  API_KEY = 2a3f1299f4e5534c7481ca1a77e96f55
+  BEARER_TOKEN = eyJhbGciOiJIUzI1NiJ9.    eyJhdWQiOiIyYTNmMTI5OWY0ZTU1MzRjNzQ4MWNhMWE3N2U5NmY1NSIsIm5iZiI6MTcyMTUxMzMwMC4xMTQ4NDMsInN1YiI6IjY2OWMzNDJlZjQzMmM1MGNiZTA1ZDcwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LQPHM-8dEn3YgRJPFNDmiENt5sHfuA-Eg5qocFx9yxM
+  NEXT_PUBLIC_BASE_URL = http://localhost:3000
+  NEXT_PUBLIC_TMDB_URL = https://api.themoviedb.org/3/discover/movie?api_key= 
+  run npm run dev from the root directory
+  go to http://localhost:3000 this may change if you already have an application running on this port.
 ```
+    
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Light/dark mode toggle
+- Live previews
+- Search
+- Cross platform
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Authors
 
-To learn more about Next.js, take a look at the following resources:
+- [@okobedev](https://github.com/ortonb110?tab=repositories)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

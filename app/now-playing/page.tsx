@@ -1,5 +1,7 @@
 import Hero from '@/app/Components/Hero';
-import SearchContainer from '@/app/now-playing/SearchContainer';
+import Container from '@/app/now-playing/Container';
+
+
 
 const page = () => {
   return (
@@ -11,8 +13,9 @@ const page = () => {
         subtitleStyles="text-[6rem] lg:text-[6rem] font-bold text-black/70 dark:text-white capitalize"
         searchText="Search Movies and TV Shows"
         path="movies"
+        search={false}
       />
-      <SearchContainer />
+      <Container />
     </main>
   );
 };

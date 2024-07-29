@@ -7,6 +7,7 @@ const Hero = ({
   subtitleStyles,
   searchText,
   path,
+  search,
 }: {
   title: string;
   titleStyles: string;
@@ -14,6 +15,7 @@ const Hero = ({
   subtitleStyles: string;
   searchText: string | 'undefined';
   path: string | undefined;
+  search: boolean;
 }) => {
   return (
     <section className="space-y-[2rem]">
@@ -21,7 +23,7 @@ const Hero = ({
         <h1 className={titleStyles}>{title}</h1>
         <h2 className={subtitleStyles}>{subtitle}</h2>
       </div>
-      <SearchComponent text={searchText} path={path} />
+      {search && <SearchComponent text={searchText} path={path} />}
     </section>
   );
 };

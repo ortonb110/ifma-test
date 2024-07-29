@@ -12,6 +12,7 @@ const MoviesPage = () => {
         subtitleStyles="text-[6rem] lg:text-[6rem] font-bold text-black/70 dark:text-white"
         searchText="Search Movies"
         path="movies"
+        search={true}
       />
       <Suspense fallback={<LoadingCard />}>
         <ShowMovies />

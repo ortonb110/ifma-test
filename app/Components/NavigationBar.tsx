@@ -7,12 +7,11 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoClose } from 'react-icons/io5';
-
-
+import { usePathname } from 'next/navigation';
 
 const NavigationBar = () => {
+  const location = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
   const OpenMenuHandler = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -39,7 +38,7 @@ const NavigationBar = () => {
               <li>
                 <Link
                   href="/movies"
-                  className="transition-colors duration-150 ease-in-out hover:text-primary"
+                  className={`transition-colors duration-150 ease-in-out hover:text-primary ${location === '/movies' ? 'text-primary' : ''}`}
                 >
                   Movies
                 </Link>
@@ -47,14 +46,16 @@ const NavigationBar = () => {
               <li>
                 <Link
                   href="/tv-shows"
-                  className="transition-colors duration-150 ease-in-out hover:text-primary"
+                  className={`transition-colors duration-150 ease-in-out hover:text-primary ${location === '/tv-shows' ? 'text-primary' : ''}`}
                 >
                   tv shows
                 </Link>
               </li>
               <li>
                 <Link href="/now-playing" className="group flex items-center gap-4">
-                  <span className="transition-colors duration-150 ease-in-out group-hover:text-primary">
+                  <span
+                    className={`transition-colors duration-150 ease-in-out group-hover:text-primary ${location === '/now-playing' ? 'text-primary' : ''}`}
+                  >
                     Now Playing
                   </span>
                   <Image

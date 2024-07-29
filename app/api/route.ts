@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
-export const GET = async (request:any) => {
+export const GET = async (request: any) => {
   const url = request.nextUrl.searchParams;
   const action = url.get('action');
   const query = url.get('query');
@@ -18,9 +18,9 @@ export const GET = async (request:any) => {
           },
         );
         return NextResponse.json(data.results);
-      } }
+      }
+    }
   } catch (error) {
     return NextResponse.error();
   }
 };
-

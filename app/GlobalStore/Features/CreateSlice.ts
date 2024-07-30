@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { resolve } from 'path';
 
 //This is the initial state of the AppContext State
 

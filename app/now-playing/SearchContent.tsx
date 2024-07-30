@@ -1,6 +1,5 @@
 import MovieCard from '@/app/Components/MovieCard';
 import axios from 'axios';
-import { Key } from 'react';
 
 const fetchNowPlaying = async () => {
   try {
@@ -28,7 +27,7 @@ const SearchContent = async () => {
         movieData.map(
           (
             movie: { poster_path: string; title: string; vote_average: number; id: string },
-            index: Key | null | undefined,
+            index: number | null | undefined,
           ) => {
             return (
               <MovieCard

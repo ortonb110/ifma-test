@@ -1,18 +1,22 @@
 {
- "extends": [
-    "next/core-web-vitals",
-    "plugin:prettier/recommended",
-    "next", "prettier"
-
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@next/next/recommended",
+    "plugin:prettier/recommended"
   ],
-  "prettier/prettier": [
-  "error",
-  {
-    "endOfLine": "auto"
-  }
-],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
   "rules": {
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/react-in-jsx-scope": "off"
   }
 }

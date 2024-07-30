@@ -27,8 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.prettierrc.json
-.prettierrc
+.env
 
 # vercel
 .vercel

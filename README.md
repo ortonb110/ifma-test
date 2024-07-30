@@ -34,5 +34,5 @@ Install project with npm
 
 ## Authors
 
-- [@okobedev](https://github.com/ortonb110?tab=repositories)
+- [@kobedev](https://github.com/ortonb110?tab=repositories)
 

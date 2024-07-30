@@ -5,6 +5,12 @@
     "next", "prettier"
 
   ],
+  "prettier/prettier": [
+  "error",
+  {
+    "endOfLine": "auto"
+  }
+],
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"

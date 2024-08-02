@@ -15,9 +15,9 @@ export default async function Home() {
         path="home"
         search={true}
       />
-      <Suspense fallback={<LoadingCard />}>
+      {/* <Suspense fallback={<LoadingCard />}>
         <HomePage />
-      </Suspense>
+      </Suspense> */}
     </main>
   );
 }

@@ -8,12 +8,10 @@ import MovieCard from '@/app/Components/MovieCard';
 import { RootState } from '@/app/GlobalStore/Store';
 import DataNavigator from '@/app/Components/DataNavigator';
 
-interface Data {
-  Data: string;
-}
+
 
 const ShowsContent = () => {
-  const [contentData, setContentData] = useState<Data>();
+  const [contentData, setContentData] = useState('');
   const tvData = useSelector((state: RootState) => state.movies.tvData);
   const page = useSelector((state: RootState) => state.movies.tvPage);
   const loading = useSelector((state: RootState) => state.movies.tvLoading);

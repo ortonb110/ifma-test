@@ -15,7 +15,7 @@ export default function Home() {
         path="home"
         search={true}
       />
-      <Suspense >
+      <Suspense fallback={<LoadingCard />}>
         <HomePage />
       </Suspense>
     </main>

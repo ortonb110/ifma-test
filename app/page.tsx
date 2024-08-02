@@ -3,7 +3,7 @@ import Hero from './Components/Hero';
 import { Suspense } from 'react';
 import LoadingCard from './Components/LoadingCard';
 
-export default async function Home() {
+export default function Home() {
   return (
     <main className="mt-[16rem]">
       <Hero

@@ -9,12 +9,8 @@ import { getMovies } from '@/app/actions/actions';
 import { useCallback, useEffect, useState } from 'react';
 import LoadingCard from '@/app/Components/LoadingCard';
 
-interface Data {
-  Data: string;
-}
-
 const MoviesContent = () => {
-  const [contentData, setContentData] = useState<Data>();
+  const [contentData, setContentData] = useState('');
   const movieData = useSelector((state: RootState) => state.movies.movieData);
   const search = useSelector((state: RootState) => state.movies.search);
   const page = useSelector((state: RootState) => state.movies.page);

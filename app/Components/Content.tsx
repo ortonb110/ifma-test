@@ -11,6 +11,7 @@ const Content = ({ data }: { data: any }) => {
   const movieData = useSelector((state: RootState) => state.movies.movieDataHome);
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(data);
     dispatch(resolveMovieData(data));
   }, [data]);
   return (

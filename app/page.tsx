@@ -6,7 +6,7 @@ import LoadingCard from './Components/LoadingCard';
 export default function Home() {
   return (
     <main className="mt-[16rem]">
-      {/* <Hero
+      <Hero
         title="MaileHereko"
         titleStyles="text-[4rem] lg:text-[6rem] font-bold"
         subtitle="Millions of movies, TV shows and more. Explore now."
@@ -17,8 +17,7 @@ export default function Home() {
       />
       <Suspense fallback={<LoadingCard />}>
         <HomePage />
-      </Suspense> */}
-      <h1>hello world</h1>
+      </Suspense>
     </main>
   );
 }

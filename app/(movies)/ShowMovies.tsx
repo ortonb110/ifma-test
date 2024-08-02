@@ -1,6 +1,6 @@
 import MoviesContent from './MoviesContent';
 
-const ShowMovies = async () => {
+const ShowMovies = () => {
   return (
     <section className="pt-[8rem]">
       <MoviesContent />

@@ -18,7 +18,7 @@ const MoviesContent = () => {
   const dispatch = useDispatch();
 
   const getData = useCallback(async ({ page }: { page: number }) => {
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch(setMoviesLoading(true));
     const data = await getMovies({ page: page });
     dispatch(setMoviesLoading(false));

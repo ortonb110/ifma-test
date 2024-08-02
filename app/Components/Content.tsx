@@ -15,9 +15,10 @@ const Content = ({ data }: { data: any }) => {
   }, [data]);
   return (
     <section className="pb-[2rem] pt-[8rem]">
-      <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
-        {movieData.length > 0 &&
-          movieData &&
+      <div
+        className={`${movieData && movieData.length > 0 ? 'grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]' : 'flex h-[60vh] w-full items-center justify-center'}`}
+      >
+        {movieData && movieData.length > 0 ? (
           movieData.map(
             (
               movie: { poster_path: string; title: string; vote_average: number; id: string },
@@ -34,7 +35,12 @@ const Content = ({ data }: { data: any }) => {
                 />
               );
             },
-          )}
+          )
+        ) : (
+          <div className="text-[1.5rem] font-light text-black/70 dark:text-gray-200/40">
+            No Movies Found
+          </div>
+        )}
       </div>
       {movieData.length > 0 && movieData && (
         <div className="flex w-full items-center justify-center">

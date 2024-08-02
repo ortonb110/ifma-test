@@ -4,9 +4,14 @@ import axios from 'axios';
 const fetchMovies = async () => {
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api?action=get&query=movies`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&page=1`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+        },
+      },
     );
-    return data;
+    return data.results;
   } catch (error) {
     return 'There was an error fetching the data';
   }

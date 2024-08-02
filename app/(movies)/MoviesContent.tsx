@@ -37,7 +37,6 @@ const MoviesContent = () => {
     if (search.length > 0 && movieData.length > 0) {
       return;
     } else {
-      console.log('search', search);
       dispatch(resolveMovies(contentData));
     }
   }, [contentData]);

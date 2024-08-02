@@ -1,5 +1,5 @@
 'use client';
-import { Key, Suspense } from 'react';
+import { Key } from 'react';
 import MovieCard from './MovieCard';
 import Link from 'next/link';
 import { RootState } from '../GlobalStore/Store';
@@ -15,8 +15,9 @@ const Content = ({ data }: { data: any }) => {
   }, [data]);
   return (
     <section className="pb-[2rem] pt-[8rem]">
-      {/* <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
+      <div className="grid grid-cols-2 justify-items-center gap-[1.5rem] pb-[3rem] md:grid-cols-3 md:gap-[1.8rem] xl:grid-cols-4 xl:gap-[2.4rem]">
         {movieData.length > 0 &&
+          movieData &&
           movieData.map(
             (
               movie: { poster_path: string; title: string; vote_average: number; id: string },
@@ -34,9 +35,8 @@ const Content = ({ data }: { data: any }) => {
               );
             },
           )}
-      </div> */}
-      {/* <DataNavigator pageNavigationHandler={pageNavigationHandler} /> */}
-      {movieData.length > 0 && (
+      </div>
+      {movieData.length > 0 && movieData && (
         <div className="flex w-full items-center justify-center">
           <Link
             href="/movies"
